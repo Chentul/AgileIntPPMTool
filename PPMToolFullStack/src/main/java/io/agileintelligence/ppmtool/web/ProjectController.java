@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api/project")
 public class ProjectController {
@@ -25,6 +26,7 @@ public class ProjectController {
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @PostMapping("")
     public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
@@ -41,6 +43,7 @@ public class ProjectController {
         return new ResponseEntity<Project>(project, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("/all")
     public Iterable<Project> getAllProjects() {
         return projectService.findAllProjects();

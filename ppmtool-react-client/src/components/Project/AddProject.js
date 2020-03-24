@@ -29,6 +29,11 @@ class AddProject extends Component {
 			end_date: end_date
 		};
 		console.log(newProject);
+		fetch('http://localhost:8080/api/project', {
+			method: 'POST',
+			body: JSON.stringify(newProject),
+			headers: { 'Content-Type': 'application/json' }
+		}).then((response) => console.log(response.json()));
 	}
 	render() {
 		const { projectName, projectIdentifier, description, start_date, end_date } = this.state;
